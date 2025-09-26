@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Professional financial advisory services with comprehensive wealth management, retirement planning, and investment strategies." />
+  <title>Harbor Wealth Partners — Premier Financial Advisory</title>
+
+  <!-- Google Fonts: Inter (modern) + Playfair Display (elegant headings) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Enhanced Color System */
+    :root {
+      --navy-primary: #0a1628;
+      --navy-secondary: #1a2332;
+      --navy-light: #2a3441;
+      --navy-80: rgba(10, 22, 40, 0.8);
+      --navy-60: rgba(10, 22, 40, 0.6);
+      --charcoal: #1e293b;
+      --slate: #334155;
+      --muted: #64748b;
+      --light-muted: #94a3b8;
+      --gold-primary: #d4af37;
+      --gold-secondary: #b8941f;
+      --gold-light: #f4e9a1;
+      --gold-20: rgba(212, 175, 55, 0.2);
+      --gold-10: rgba(212, 175, 55, 0.1);
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-tertiary: #f1f5f9;
+      --card-bg: #ffffff;
+      --border-primary: #e2e8f0;
+      --border-secondary: #cbd5e1;
+      --success: #059669;
+      --success-light: #d1fae5;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --radius-lg: 24px;
+      --maxw: 1200px;
+    }
+
+    /* Global Reset & Base */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      color: var(--charcoal);
+      background: var(--bg-primary);
+      line-height: 1.7;
+      font-weight: 400;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    h1, h2, h3, h4 { 
+      font-family: "Playfair Display", serif; 
+      line-height: 1.3; 
+      color: var(--navy-primary);
+      font-weight: 600;
+    }
+    p { color: var(--slate); }
+    a { color: inherit; text-decoration: none; transition: all 200ms ease; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(100% - 2rem, var(--maxw)); margin: 0 auto; }
+
+    /* Header */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      transition: all 400ms cubic-bezier(0.4, 0.0, 0.2, 1);
+      background: rgba(255, 255, 255, 0.247);
+      backdrop-filter: blur(0px);
+    }
+    header.scrolled {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: saturate(180%) blur(20px);
+      box-shadow: var(--shadow-md);
+      border-bottom: 1px solid var(--border-primary);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; transition: padding 300ms ease; }
+    header.scrolled .nav { padding: 16px 0; }
+    .brand { display: flex; align-items: center; gap: 16px; font-weight: 700; letter-spacing: 0.5px; font-size: 1.1rem; }
+    .brand-mark { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--navy-primary), var(--navy-secondary)); display: grid; place-items: center; color: var(--gold-primary); box-shadow: var(--shadow-lg); transition: transform 200ms ease; }
+    .brand:hover .brand-mark { transform: scale(1.05); }
+
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-links a { position: relative; font-weight: 500; font-size: 0.95rem; color: var(--navy-primary); opacity: 0.9; }
+    .nav-links a:not(.btn)::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 0; background: var(--gold-primary); transition: width 300ms cubic-bezier(0.4, 0.0, 0.2, 1); }
+    .nav-links a:not(.btn):hover::after { width: 100%; }
+
+    .menu-toggle { display: none; background: transparent; border: 0; width: 44px; height: 44px; border-radius: 12px; cursor: pointer; }
+    .mobile-drawer { position: fixed; inset: 0 0 auto auto; top: 72px; right: 16px; background: var(--card-bg); border: 1px solid var(--border-primary); border-radius: var(--radius); box-shadow: var(--shadow-xl); padding: 20px; width: min(90vw, 320px); display: none; flex-direction: column; gap: 8px; z-index: 1001; }
+    .mobile-drawer a { padding: 12px 16px; border-radius: var(--radius-sm); font-weight: 500; }
+    .mobile-drawer a:hover { background: var(--bg-secondary); }
+    .mobile-drawer.open { display: flex; }
+    @media (max-width: 900px) { .nav-links { display: none !important; } .menu-toggle { display: grid; place-items: center; } }
+    @media (min-width: 901px) { .mobile-drawer { display: none !important; } .menu-toggle { display: none !important; } }
+
+    /* HERO (minimized text) */
+    .hero { position: relative; min-height: 100vh; display: grid; place-items: center; color: var(--bg-primary); text-align: center; overflow: hidden; background: var(--navy-primary); }
+    .hero::before { content: ""; position: absolute; inset: 0; background:
+      linear-gradient(135deg, rgba(10,22,40,0.85) 0%, rgba(26,35,50,0.75) 50%, rgba(10,22,40,0.90) 100%),
+      url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop');
+      background-size: cover; background-position: center; background-attachment: fixed; }
+    .hero-inner { position: relative; padding: 120px 0 90px; max-width: 860px; }
+    .super { letter-spacing: 2px; text-transform: uppercase; font-weight: 600; color: var(--gold-light); font-size: 0.8rem; margin-bottom: 14px; }
+    .headline { font-size: clamp(2rem, 4.2vw, 3.2rem); margin: 0 0 12px; font-weight: 700; background: linear-gradient(135deg, #ffffff, #e2e8f0); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.18; }
+    .sub { font-size: 1rem; max-width: 680px; margin: 0 auto 26px; color: rgba(255,255,255,0.9); line-height: 1.55; }
+    .hero-cta { display: flex; gap: 14px; justify-content: center; margin-top: 22px; flex-wrap: wrap; }
+
+    .btn { --btn-bg: var(--gold-primary); --btn-fg: var(--navy-primary); display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: var(--radius); border: 2px solid transparent; font-weight: 600; font-size: 0.95rem; letter-spacing: 0.3px; background: var(--btn-bg); color: var(--btn-fg); box-shadow: 0 8px 30px var(--gold-20); transition: all 300ms cubic-bezier(0.4, 0.0, 0.2, 1); cursor: pointer; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px var(--gold-20); --btn-bg: var(--gold-secondary); }
+    .btn:active { transform: translateY(-1px); }
+    .btn-outline { --btn-bg: transparent; --btn-fg: var(--gold-primary); border-color: var(--gold-primary); box-shadow: none; }
+    .btn-outline:hover { --btn-bg: var(--gold-primary); --btn-fg: var(--navy-primary); }
+
+    .scroll-indicator { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.7); animation: bounce 2s infinite; }
+    @keyframes bounce { 0%,20%,50%,80%,100%{transform: translateX(-50%) translateY(0);}40%{transform: translateX(-50%) translateY(-10px);}60%{transform: translateX(-50%) translateY(-5px);} }
+
+    /* Stats Bar (with animated counters) */
+    .stats-bar { background: var(--bg-primary); border-top: 1px solid var(--border-primary); padding: 56px 0; margin-top: -1px; }
+    .stats-grid { display: grid; gap: 32px; text-align: center; }
+    @media (min-width: 640px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+    .stat-item { padding: 10px; }
+    .stat-number { font-size: 2.2rem; font-weight: 800; color: var(--gold-primary); font-family: "Inter", sans-serif; line-height: 1; margin-bottom: 6px; }
+    .stat-label { color: var(--muted); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* Sections */
+    section { padding: 90px 0; }
+    .section-head { margin-bottom: 46px; text-align: center; max-width: 820px; margin-left: auto; margin-right: auto; }
+    .eyebrow { color: var(--gold-primary); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; font-size: 0.85rem; margin-bottom: 14px; }
+    .section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); margin: 0 0 14px; font-weight: 600; }
+    .section-desc { font-size: 1.05rem; color: var(--muted); line-height: 1.8; }
+
+    /* About (improved UI) */
+    .about { background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%); }
+    .about-grid { display: grid; gap: 38px; align-items: start; }
+    @media (min-width: 980px) { .about-grid { grid-template-columns: 1.05fr 0.95fr; } }
+
+    /* Profile Card */
+    .profile-card { background: var(--card-bg); border: 1px solid var(--border-primary); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: 28px; position: sticky; top: 96px; }
+    .profile-header { display: grid; grid-template-columns: 84px 1fr; gap: 16px; align-items: center; margin-bottom: 14px; }
+    .avatar { width: 84px; height: 84px; border-radius: 50%; background: linear-gradient(135deg, #e2e8f0, #f8fafc); display: grid; place-items: center; border: 1px solid var(--border-primary); overflow: hidden; }
+    .profile-name { margin: 0; font-size: 1.4rem; }
+    .profile-role { margin: 4px 0 0; color: var(--muted); font-weight: 600; font-size: 0.95rem; }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .badge { display: inline-block; padding: 6px 12px; border: 1px solid var(--gold-primary); border-radius: 999px; font-size: 0.78rem; color: var(--gold-primary); background: var(--gold-10); font-weight: 600; }
+    .keyline { height: 1px; background: var(--border-primary); margin: 18px 0; }
+    .mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .mini { background: var(--bg-secondary); border: 1px solid var(--border-primary); border-radius: 12px; padding: 12px; }
+    .mini .k { color: var(--muted); font-size: 0.76rem; letter-spacing: 0.6px; text-transform: uppercase; }
+    .mini .v { font-weight: 800; color: var(--navy-primary); }
+
+    /* Bio & Testimonials */
+    .bio { background: var(--card-bg); border: 1px solid var(--border-primary); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-lg); }
+    .bio h3 { margin: 0 0 8px; font-size: 1.3rem; color: var(--navy-primary); }
+    .bio p.lead { margin: 0 0 18px; color: var(--muted); font-size: 1.05rem; }
+    .bio ul { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 8px; }
+    .bio li { position: relative; padding-left: 22px; color: var(--slate); }
+    .bio li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--gold-primary); font-weight: 800; }
+
+    .testimonials { display: grid; gap: 16px; }
+    .quote { background: var(--card-bg); border: 1px solid var(--border-primary); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow-md); position: relative; }
+    .quote p { margin: 0 0 12px; color: var(--slate); font-style: italic; font-size: 1.02rem; }
+    .quote .who { display: flex; align-items: center; gap: 12px; color: var(--muted); font-weight: 700; font-size: 0.92rem; }
+
+    /* Services */
+    .services { background: var(--bg-primary); }
+    .services-grid { display: grid; gap: 26px; margin-top: 30px; }
+    @media (min-width: 680px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1000px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+    .card { background: var(--card-bg); border: 1px solid var(--border-primary); border-radius: var(--radius-lg); padding: 30px; box-shadow: var(--shadow-lg); transition: all 300ms cubic-bezier(0.4, 0.0, 0.2, 1); position: relative; overflow: hidden; }
+    .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--gold-primary), var(--gold-secondary)); opacity: 0; transition: opacity 300ms ease; }
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); border-color: var(--border-secondary); }
+    .card:hover::before { opacity: 1; }
+    .icon { width: 56px; height: 56px; border-radius: var(--radius); display: grid; place-items: center; background: linear-gradient(135deg, var(--gold-10), var(--gold-20)); border: 1px solid var(--gold-primary); margin-bottom: 16px; }
+    .card h3 { font-size: 1.22rem; margin: 0 0 10px; color: var(--navy-primary); }
+    .card p { color: var(--muted); line-height: 1.7; margin: 0; }
+
+    /* Process */
+    .process { background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%); }
+    .process-steps { display: grid; gap: 30px; margin-top: 40px; }
+    @media (min-width: 900px) { .process-steps { grid-template-columns: repeat(3, 1fr); } }
+    .step { text-align: center; position: relative; }
+    .step-number { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary)); color: var(--navy-primary); display: grid; place-items: center; font-size: 1.4rem; font-weight: 800; margin: 0 auto 18px; box-shadow: var(--shadow-lg); }
+    .step h3 { font-size: 1.3rem; margin: 0 0 10px; }
+    .step p { color: var(--muted); line-height: 1.7; }
+
+    /* Contact (dropdowns removed) */
+    .contact { background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-secondary) 100%); color: var(--bg-primary); }
+    .contact .section-title, .contact .eyebrow { color: var(--bg-primary); }
+    .contact .section-desc { color: rgba(255,255,255,0.85); }
+    .form-wrap { background: var(--card-bg); border: 1px solid var(--border-primary); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-xl); max-width: 860px; margin: 0 auto; }
+    .form-grid { display: grid; gap: 20px; }
+    @media (min-width: 720px) { .form-grid { grid-template-columns: repeat(2, 1fr); } }
+    .field { position: relative; }
+    .field.full-width { grid-column: 1 / -1; }
+    .input { width: 100%; padding: 16px 14px 14px; border: 2px solid var(--border-primary); border-radius: var(--radius); background: var(--bg-secondary); outline: none; transition: all 250ms cubic-bezier(0.4, 0.0, 0.2, 1); font-size: 1rem; font-family: inherit; }
+    .input:focus { border-color: var(--gold-primary); background: var(--bg-primary); box-shadow: 0 0 0 4px var(--gold-10); }
+    .label { position: absolute; left: 16px; top: 16px; padding: 0 6px; background: transparent; color: var(--muted); pointer-events: none; transition: all 200ms cubic-bezier(0.4, 0.0, 0.2, 1); font-weight: 500; }
+    .input:focus + .label, .input:not(:placeholder-shown) + .label { transform: translateY(-26px) scale(0.85); background: var(--card-bg); color: var(--gold-primary); }
+    textarea.input { min-height: 140px; resize: vertical; font-family: inherit; }
+
+    /* Replacing dropdowns with radios (accessible fieldsets) */
+    fieldset { border: 1px solid var(--border-primary); border-radius: var(--radius); padding: 14px; margin: 0; background: var(--bg-secondary); }
+    legend { font-weight: 700; color: var(--navy-primary); padding: 0 6px; }
+    .choices { display: grid; gap: 8px; margin-top: 8px; }
+    .choice { display: flex; align-items: center; gap: 10px; background: var(--bg-primary); border: 1px solid var(--border-primary); border-radius: 12px; padding: 10px 12px; }
+    .choice input { width: 18px; height: 18px; }
+
+    .submit-row { display: flex; align-items: center; gap: 16px; justify-content: space-between; margin-top: 12px; flex-wrap: wrap; }
+    .notice { font-size: 0.9rem; color: var(--muted); }
+    .thanks { display: none; text-align: center; padding: 28px; border: 2px solid var(--success); border-radius: var(--radius); background: var(--success-light); color: var(--success); box-shadow: var(--shadow-lg); margin-top: 22px; }
+    .thanks.show { display: block; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border-primary); background: var(--navy-primary); color: rgba(255,255,255,0.8); padding: 80px 0 40px; }
+    .foot-grid { display: grid; gap: 40px; align-items: start; }
+    @media (min-width: 760px) { .foot-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
+    .foot-brand { display: flex; align-items: center; gap: 16px; color: var(--bg-primary); font-weight: 700; font-size: 1.2rem; }
+    .foot-section h4 { color: var(--bg-primary); font-size: 1.1rem; margin: 0 0 20px; font-family: "Inter", sans-serif; font-weight: 600; }
+    .foot-links { list-style: none; padding: 0; margin: 0; }
+    .foot-links li { margin: 0 0 12px; }
+    .foot-links a { color: rgba(255,255,255,0.7); font-size: 0.95rem; transition: color 200ms ease; }
+    .foot-links a:hover { color: var(--gold-primary); }
+    .social { display: flex; gap: 16px; margin-top: 24px; }
+    .social a { width: 44px; height: 44px; border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius-sm); display: grid; place-items: center; transition: all 200ms ease; }
+    .social a:hover { background: var(--gold-primary); border-color: var(--gold-primary); transform: translateY(-2px); }
+    .copy { margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.9rem; color: rgba(255,255,255,0.6); }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 800ms cubic-bezier(0.4, 0.0, 0.2, 1); }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { transition: none; opacity: 1; transform: none; } .btn, .card { transition: none; } }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header id="top">
+    <div class="container nav">
+      <a href="#top" class="brand">
+        <div class="brand-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span>Harbor Wealth Partners</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#contact" class="btn">Schedule Consultation</a>
+      </nav>
+
+      <button class="menu-toggle" aria-label="Toggle Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      
+      <div class="mobile-drawer" aria-hidden="true">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#contact" class="btn">Schedule Consultation</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero (minimized copy) -->
+  <section class="hero">
+    <div class="hero-inner container reveal">
+      <div class="super">Fiduciary Excellence • Independent Guidance</div>
+      <h1 class="headline">Expert Wealth Management</h1>
+      <p class="sub">Institutional‑grade investing and holistic planning—tailored to your ambitions.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#contact">Schedule Consultation</a>
+        <a class="btn btn-outline" href="#services">Our Services</a>
+      </div>
+    </div>
+    <div class="scroll-indicator" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 13l5 5 5-5M7 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Stats Bar (animated counters) -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-grid reveal">
+        <div class="stat-item">
+          <div class="stat-number counter" data-value="2.8" data-prefix="$" data-suffix="B" data-decimals="1">$0.0B</div>
+          <div class="stat-label">Assets Under Management</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number counter" data-value="15" data-suffix="+" data-decimals="0">0+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number counter" data-value="250" data-suffix="+" data-decimals="0">0+</div>
+          <div class="stat-label">Families Served</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number counter" data-value="98" data-suffix="%" data-decimals="0">0%</div>
+          <div class="stat-label">Client Retention Rate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About (improved UI) -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">About Our Firm</div>
+        <h2 class="section-title">Experience. Integrity. Results.</h2>
+        <p class="section-desc">Founded on the principle that every client deserves fiduciary‑level care, Harbor Wealth Partners has helped successful individuals and families navigate complex financial decisions for over 15 years.</p>
+      </div>
+
+      <div class="about-grid">
+        <!-- Left: Sticky profile card with quick facts -->
+        <aside class="profile-card reveal" aria-label="Advisor profile">
+          <div class="profile-header">
+            <div class="avatar" aria-hidden="true">
+              <!-- Optional photo -->
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="8" r="4" stroke="#94a3b8" stroke-width="1.6"/>
+                <path d="M4 20c1.5-3.5 5-5 8-5s6.5 1.5 8 5" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="profile-name">Alexandra Carter, CFA®, CFP®, CIMA®</h3>
+              <div class="profile-role">Founder & Managing Principal</div>
+            </div>
+          </div>
+
+          <div class="badge-row">
+            <span class="badge">CFA® Charterholder</span>
+            <span class="badge">CFP® Professional</span>
+            <span class="badge">CIMA® Certified</span>
+            <span class="badge">Fiduciary Standard</span>
+          </div>
+
+          <div class="keyline"></div>
+
+          <div class="mini-grid" aria-label="Key highlights">
+            <div class="mini"><div class="k">AUM</div><div class="v">$2.8B</div></div>
+            <div class="mini"><div class="k">Clients</div><div class="v">250+</div></div>
+            <div class="mini"><div class="k">Tenure</div><div class="v">15+ yrs</div></div>
+            <div class="mini"><div class="k">Retention</div><div class="v">98%</div></div>
+          </div>
+        </aside>
+
+        <!-- Right: Bio + testimonials -->
+        <div class="bio reveal">
+          <h3>Institutional Expertise, Personal Focus</h3>
+          <p class="lead">Alexandra brings institutional‑quality investment rigor to private clients. She began her career at Goldman Sachs Asset Management before founding Harbor Wealth Partners to provide truly independent, conflict‑free advice.</p>
+          <ul>
+            <li>Advanced portfolio construction, factor tilts, and risk management</li>
+            <li>Tax‑aware planning: TLH/asset location, equity comp, and Roth conversions</li>
+            <li>Estate & legacy coordination with attorneys and cross‑border specialists</li>
+            <li>MBA in Finance, Wharton School, University of Pennsylvania</li>
+            <li>Registered Investment Advisor with SEC and SEBI</li>
+          </ul>
+
+          <div class="keyline" style="margin:24px 0;"></div>
+          <div class="testimonials" aria-label="Client testimonials">
+            <figure class="quote">
+              <p>“Sophisticated tax‑loss harvesting and asset location saved us well into six figures. Calm, data‑driven guidance.”</p>
+              <figcaption class="who">— Priya & Rohit Sharma · Tech Entrepreneurs</figcaption>
+            </figure>
+            <figure class="quote">
+              <p>“During 2020 volatility, disciplined rebalancing improved our long‑term outcomes. Exactly the steady hand we needed.”</p>
+              <figcaption class="who">— Dr. Anika Mehta · Cardiovascular Surgeon</figcaption>
+            </figure>
+            <figure class="quote">
+              <p>“Thoughtful estate strategy and multigenerational planning aligned our family for decades.”</p>
+              <figcaption class="who">— The Johnson Family · Family Office</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Our Services</div>
+        <h2 class="section-title">Comprehensive Wealth Management Solutions</h2>
+        <p class="section-desc">A full spectrum of services to grow, protect, and transfer your wealth—tailored to your unique goals.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="card reveal">
+          <div class="icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L2 12h3v8h14v-8h3L12 3z" stroke="#d4af37" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Investment Management</h3>
+          <p>Sophisticated portfolio construction using modern portfolio theory, factor tilts, and alternatives. Tax‑optimized rebalancing aligned to your risk.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Retirement Planning</h3>
+          <p>Evidence‑based income strategies: Social Security, pensions, decumulation, and sequence‑risk mitigation to sustain your lifestyle.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Tax Optimization</h3>
+          <p>Proactive TLH, asset location, Roth conversions, and charitable strategies—coordinated with your CPA to reduce lifetime taxes.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Risk Management</h3>
+          <p>Holistic insurance reviews: life, disability, LTC, and liability. Right‑sizing coverage to safeguard your plan.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 7a4 4 0 108 0 4 4 0 00-8 0zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Estate Planning</h3>
+          <p>Trusts, charitable giving, and business succession—coordinated to minimize taxes and honor your legacy.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Executive Services</h3>
+          <p>Equity comp planning, concentrated stock, deferred comp, and liquidity events for founders and leaders.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="process">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Our Process</div>
+        <h2 class="section-title">A Disciplined Approach to Wealth Management</h2>
+        <p class="section-desc">A time‑tested process so every aspect of your financial life is considered, implemented, and optimized.</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="step reveal">
+          <div class="step-number">1</div>
+          <h3>Discovery & Analysis</h3>
+          <p>Deep dive into goals, risk, constraints, taxes, insurance, estate docs, and current allocations.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-number">2</div>
+          <h3>Strategy Development</h3>
+          <p>Custom plan & IPS: allocation, tax strategy, and milestones mapped to outcomes.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-number">3</div>
+          <h3>Implementation & Monitoring</h3>
+          <p>Execution, rebalancing, tax optimization, and ongoing reviews to keep you on track.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact (dropdowns removed; radios instead) -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Schedule Consultation</div>
+        <h2 class="section-title">Begin Your Wealth Journey</h2>
+        <p class="section-desc">Take the first step. Share a few details and we’ll reach out within one business day.</p>
+      </div>
+
+      <form id="contactForm" class="form-wrap reveal" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <input class="input" id="firstName" type="text" name="firstName" required placeholder=" " />
+            <label class="label" for="firstName">First Name *</label>
+          </div>
+          <div class="field">
+            <input class="input" id="lastName" type="text" name="lastName" required placeholder=" " />
+            <label class="label" for="lastName">Last Name *</label>
+          </div>
+          <div class="field">
+            <input class="input" id="email" type="email" name="email" required placeholder=" " />
+            <label class="label" for="email">Email Address *</label>
+          </div>
+          <div class="field">
+            <input class="input" id="phone" type="tel" name="phone" required placeholder=" " />
+            <label class="label" for="phone">Phone Number *</label>
+          </div>
+
+          <!-- Radios replacing Investable Assets dropdown -->
+          <!-- <div class="field full-width">
+            <fieldset id="netWorth" aria-required="true">
+              <legend>Investable Assets *</legend>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="assets" value="500k-1m" required> $500K – $1M</label>
+                <label class="choice"><input type="radio" name="assets" value="1m-5m"> $1M – $5M</label>
+                <label class="choice"><input type="radio" name="assets" value="5m-10m"> $5M – $10M</label>
+                <label class="choice"><input type="radio" name="assets" value="10m+"> $10M+</label>
+              </div>
+            </fieldset>
+          </div> -->
+
+          <!-- Radios replacing Primary Interest dropdown -->
+          <!-- <div class="field full-width">
+            <fieldset id="priority" aria-required="true">
+              <legend>Primary Interest *</legend>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="interest" value="investment" required> Investment Management</label>
+                <label class="choice"><input type="radio" name="interest" value="retirement"> Retirement Planning</label>
+                <label class="choice"><input type="radio" name="interest" value="tax"> Tax Optimization</label>
+                <label class="choice"><input type="radio" name="interest" value="estate"> Estate Planning</label>
+                <label class="choice"><input type="radio" name="interest" value="comprehensive"> Comprehensive Planning</label>
+              </div>
+            </fieldset>
+          </div> -->
+
+          <div class="field full-width">
+            <textarea class="input" id="message" name="message" placeholder=" "></textarea>
+            <label class="label" for="message">Tell us about your goals and current challenges</label>
+          </div>
+        </div>
+
+        <div class="submit-row">
+          <button class="btn" type="submit">Schedule Consultation
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="notice">* Required fields. All information is kept strictly confidential.</div>
+        </div>
+
+        <div id="thanks" class="thanks" role="status">
+          <h3 style="margin: 0 0 12px; color: var(--success);">Thank You!</h3>
+          <p style="margin: 0; color: var(--success);">Your request has been received. We will contact you within one business day.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand">
+            <div class="brand-mark">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            Harbor Wealth Partners
+          </div>
+          <p style="margin: 20px 0; max-width: 420px; line-height: 1.6;">SEC‑Registered Investment Adviser providing fiduciary‑level wealth management services to high‑net‑worth individuals and families.</p>
+          <div class="social">
+            <a href="#" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.94 6.5a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0zM4.79 8.8h2.74V19H4.79V8.8zM10.1 8.8h2.62v1.39h.04c.36-.68 1.24-1.39 2.55-1.39 2.72 0 3.22 1.79 3.22 4.11V19h-2.74v-4.55c0-1.09-.02-2.49-1.52-2.49-1.53 0-1.77 1.2-1.77 2.41V19H10.1V8.8z" fill="currentColor"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 5.5a8.56 8.56 0 01-2.46.68 4.29 4.29 0 001.88-2.37 8.6 8.6 0 01-2.72 1.04A4.28 4.28 0 0016.3 4c-2.38 0-4.3 1.93-4.3 4.31 0 .34.04.67.11.98A12.14 12.14 0 013 5.15a4.32 4.32 0 001.33 5.75 4.23 4.23 0 01-1.95-.54v.05c0 2.09 1.48 3.84 3.45 4.24a4.3 4.3 0 01-1.94.07 4.31 4.31 0 004.02 2.99A8.6 8.6 0 013 19.54 12.14 12.14 0 009.56 21c7.23 0 11.19-5.99 11.19-11.19 0-.17 0-.35-.01-.52A8.01 8.01 0 0021 5.5z" fill="currentColor"/></svg>
+            </a>
+            <a href="#" aria-label="Newsletter">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="foot-section">
+          <h4>Services</h4>
+          <ul class="foot-links">
+            <li><a href="#services">Investment Management</a></li>
+            <li><a href="#services">Retirement Planning</a></li>
+            <li><a href="#services">Tax Optimization</a></li>
+            <li><a href="#services">Estate Planning</a></li>
+            <li><a href="#services">Risk Management</a></li>
+            <li><a href="#services">Executive Services</a></li>
+          </ul>
+        </div>
+
+        <div class="foot-section">
+          <h4>Contact Information</h4>
+          <div style="margin-bottom: 16px;"><strong style="color: var(--bg-primary);">Mumbai Office</strong><br> Tower A, Level 42<br> Bandra Kurla Complex<br> Mumbai, Maharashtra 400051</div>
+          <div style="margin-bottom: 16px;"><strong style="color: var(--bg-primary);">Phone:</strong> +91 22 6789 1234<br><strong style="color: var(--bg-primary);">Email:</strong> info@harborwealthpartners.com</div>
+          <div><strong style="color: var(--bg-primary);">Investment Advisor:</strong><br> SEC Registration: 801-12345<br> SEBI Registration: INA000012345</div>
+        </div>
+      </div>
+
+      <div class="copy">
+        <p>© <span id="year"></span> Harbor Wealth Partners LLC. All rights reserved. | SEC‑Registered Investment Adviser</p>
+        <p style="margin-top: 12px; font-size: 0.8rem;">Investment advisory services offered through Harbor Wealth Partners LLC, a Registered Investment Adviser. Information presented is for educational purposes only and is not intended as investment advice. Past performance does not guarantee future results.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.querySelector('header');
+    const onScroll = () => { if (window.scrollY > 50) header.classList.add('scrolled'); else header.classList.remove('scrolled'); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Mobile menu
+    const toggleBtn = document.querySelector('.menu-toggle');
+    const drawer = document.querySelector('.mobile-drawer');
+    toggleBtn?.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('open');
+      toggleBtn.setAttribute('aria-expanded', isOpen.toString());
+      drawer.setAttribute('aria-hidden', (!isOpen).toString());
+    });
+    drawer?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      drawer.classList.remove('open');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+    }));
+
+    // Scroll reveal animations
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in-view'); observer.unobserve(entry.target); } });
+    }, observerOptions);
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Animated counters for stats
+    const counters = document.querySelectorAll('.counter');
+    const fmt = (num, decimals) => num.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+    const runCounter = (el) => {
+      const target = parseFloat(el.dataset.value || '0');
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      let start = 0; const duration = 1400; const startTs = performance.now();
+      const step = (now) => {
+        const p = Math.min((now - startTs) / duration, 1);
+        const ease = p < 0.5 ? 2*p*p : -1 + (4 - 2*p)*p; // easeInOutQuad
+        const val = start + (target - start) * ease;
+        el.textContent = `${prefix}${fmt(val, decimals)}${suffix}`;
+        if (p < 1) requestAnimationFrame(step); else el.textContent = `${prefix}${fmt(target, decimals)}${suffix}`;
+      };
+      requestAnimationFrame(step);
+    };
+    const countersIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) { runCounter(entry.target); countersIO.unobserve(entry.target); } });
+    }, { threshold: 0.6 });
+    counters.forEach(c => countersIO.observe(c));
+
+    // Contact form (radios validated; dropdowns removed)
+    const form = document.getElementById('contactForm');
+    const thanksMessage = document.getElementById('thanks');
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Validate text inputs
+      const requiredInputs = ['firstName','lastName','email','phone'];
+      let ok = true;
+      for (const id of requiredInputs) {
+        const field = form.querySelector('#' + id);
+        if (!field.value.trim()) { field.style.borderColor = '#ef4444'; ok = false; } else { field.style.borderColor = ''; }
+      }
+      // Email format
+      const email = form.email.value.trim();
+      if (!/^([^\s@]+)@([^\s@]+)\.[^\s@]+$/.test(email)) { ok = false; form.email.style.borderColor = '#ef4444'; }
+
+      // Radios
+      const assetsChecked = form.querySelector('input[name="assets"]:checked');
+      const interestChecked = form.querySelector('input[name="interest"]:checked');
+      if (!assetsChecked || !interestChecked) { ok = false; alert('Please choose your Investable Assets and Primary Interest.'); }
+      if (!ok) return;
+
+      // Simulate submission
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const original = submitBtn.innerHTML; submitBtn.disabled = true; submitBtn.innerHTML = 'Sending…';
+      await new Promise(r => setTimeout(r, 1200));
+
+      form.style.display = 'none';
+      thanksMessage.classList.add('show');
+      setTimeout(() => {
+        form.reset(); form.style.display = 'block'; thanksMessage.classList.remove('show'); submitBtn.disabled = false; submitBtn.innerHTML = original;
+      }, 4800);
+    });
+
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return; // allow non-anchors
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>
