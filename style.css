@@ -372,39 +372,51 @@
   .stats-bar {
       background: var(--bg-primary);
       border-top: 1px solid var(--border-primary);
-      padding: 56px 0;
+      padding: 64px 0;
       margin-top: -1px;
   }
 
   .stats-grid {
       display: grid;
-      gap: 32px;
+      gap: 40px;
       text-align: center;
   }
 
   @media (min-width: 640px) {
       .stats-grid {
           grid-template-columns: repeat(2, 1fr);
+          gap: 48px;
       }
   }
 
   @media (min-width: 900px) {
       .stats-grid {
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(3, 1fr);
+          gap: 56px;
       }
   }
 
   .stat-item {
-      padding: 10px;
+      padding: 24px;
+      background: var(--bg-secondary);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-primary);
+      transition: all 300ms ease;
+  }
+
+  .stat-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--gold-primary);
   }
 
   .stat-number {
-      font-size: 2.2rem;
+      font-size: 2.6rem;
       font-weight: 800;
       color: var(--gold-primary);
       font-family: "Inter", sans-serif;
       line-height: 1;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
   }
 
   .stat-label {
@@ -450,7 +462,7 @@
   }
 
   /* About (improved UI) */
-  #about {
+#about {
   background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
   padding: 90px 0;
 }
@@ -458,7 +470,7 @@
 #about .section-head {
   text-align: center;
   max-width: 840px;
-  margin: 0 auto 48px;
+  margin: 0 auto 52px;
 }
 
 #about .eyebrow {
@@ -475,7 +487,7 @@
   color: var(--navy-primary);
   font-weight: 600;
   font-size: clamp(1.9rem, 3.4vw, 2.5rem);
-  margin: 0 0 10px;
+  margin: 0 0 12px;
 }
 
 #about .section-desc {
@@ -490,94 +502,320 @@
   display: grid;
   gap: 28px;
   align-items: start;
+  margin-bottom: 60px;
 }
 
 @media (min-width: 960px) {
   #about .about-two-col {
-    grid-template-columns: 0.9fr 1.1fr; /* brief left, testimonials right */
-    gap: 34px;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
   }
 }
 
-/* Advisor card (brief) */
+/* Advisor card */
 #about .advisor-card {
   background: var(--bg-primary);
   border: 1px solid var(--border-primary);
   border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
-  padding: 22px;
-  position: sticky;
-  top: 96px; /* stays in view on tall pages */
+  padding: 30px;
+  height: 100%;
+  transition: all 300ms ease;
+}
+
+#about .advisor-card:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
 }
 
 #about .advisor-header {
   display: grid;
-  grid-template-columns: 84px 1fr;
-  gap: 14px;
+  grid-template-columns: 96px 1fr;
+  gap: 18px;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-primary);
 }
 
 #about .avatar {
-  width: 84px; height: 84px; border-radius: 50%;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
   overflow: hidden;
-  background: #eef2f7;
-  border: 1px solid var(--border-primary);
-  box-shadow: var(--shadow-md);
+  background: linear-gradient(135deg, #f8fafc, #eef2f7);
+  border: 3px solid var(--gold-primary);
+  box-shadow: var(--shadow-lg);
 }
 
 #about .avatar img {
-  width: 100%; height: 100%; object-fit: contain; display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 #about .advisor-name {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   color: var(--navy-primary);
+  font-weight: 600;
+  line-height: 1.3;
 }
 
 #about .advisor-role {
-  margin: 4px 0 0;
-  color: var(--muted);
+  margin: 6px 0 0;
+  color: var(--gold-primary);
   font-weight: 600;
   font-size: 0.95rem;
+  letter-spacing: 0.3px;
 }
 
 #about .advisor-brief {
-  margin: 6px 0 0;
+  margin: 0 0 24px;
   color: var(--slate);
   line-height: 1.7;
+  font-size: 1rem;
 }
 
-/* Testimonials */
-#about .testimonials {
+#about .advisor-credentials {
   display: grid;
-  gap: 16px;
+  gap: 14px;
+}
+
+#about .cred-item {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 12px;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  border: 1px solid var(--border-primary);
+}
+
+#about .cred-item svg {
+  color: var(--gold-primary);
+  margin-top: 2px;
+}
+
+#about .cred-item strong {
+  display: block;
+  color: var(--navy-primary);
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+  font-weight: 600;
+}
+
+#about .cred-item span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+/* Firm Info Card */
+#about .firm-info-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 30px;
+  height: 100%;
+  transition: all 300ms ease;
+}
+
+#about .firm-info-card:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+}
+
+#about .firm-info-card h3 {
+  margin: 0 0 14px;
+  font-size: 1.5rem;
+  color: var(--navy-primary);
+  font-weight: 600;
+}
+
+#about .firm-info-card > p {
+  margin: 0 0 28px;
+  color: var(--slate);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+#about .firm-stats {
+  display: grid;
+  gap: 20px;
+}
+
+#about .firm-stat {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+#about .firm-stat-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--gold-10), var(--gold-20));
+  border: 1px solid var(--gold-primary);
+  display: grid;
+  place-items: center;
+  color: var(--gold-primary);
+  flex-shrink: 0;
+}
+
+#about .firm-stat strong {
+  display: block;
+  color: var(--navy-primary);
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+#about .firm-stat p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Testimonials Section (One Row) */
+#about .testimonials-section {
+  margin-top: 60px;
+  padding-top: 60px;
+  border-top: 2px solid var(--border-primary);
+}
+
+#about .testimonials-title {
+  text-align: center;
+  font-size: 1.9rem;
+  color: var(--navy-primary);
+  margin: 0 0 40px;
+  font-weight: 600;
+}
+
+#about .testimonials-row {
+  display: grid;
+  gap: 24px;
+}
+
+@media (min-width: 1000px) {
+  #about .testimonials-row {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
 }
 
 #about .quote {
   background: var(--bg-primary);
   border: 1px solid var(--border-primary);
-  border-radius: var(--radius-sm);
-  padding: 18px 18px 16px;
-  box-shadow: var(--shadow-md);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow-lg);
+  transition: all 350ms cubic-bezier(0.4, 0.0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+#about .quote::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 18px;
+  font-size: 6rem;
+  font-family: "Playfair Display", serif;
+  color: var(--gold-20);
+  line-height: 1;
+  pointer-events: none;
+}
+
+#about .quote:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--gold-primary);
+}
+
+#about .quote:hover::before {
+  color: var(--gold-primary);
 }
 
 #about .quote blockquote {
-  margin: 0 0 10px;
+  margin: 0 0 18px;
   color: var(--slate);
   font-style: italic;
-  line-height: 1.7;
+  line-height: 1.75;
+  font-size: 1rem;
+  position: relative;
+  z-index: 1;
+  flex-grow: 1;
 }
 
 #about .quote .who {
-  color: var(--muted);
-  font-weight: 700;
-  font-size: 0.92rem;
+  color: var(--navy-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.2px;
+  margin-top: auto;
+  position: relative;
+  z-index: 1;
 }
 
-/* Optional: subtle reveal if your global script toggles .in-view */
-#about .reveal { opacity: 1; transform: none; } /* noop to avoid flicker if not using JS */
+/* Responsive adjustments */
+@media (max-width: 999px) {
+  #about .advisor-header {
+    grid-template-columns: 84px 1fr;
+  }
+  
+  #about .avatar {
+    width: 84px;
+    height: 84px;
+  }
+  
+  #about .advisor-name {
+    font-size: 1.2rem;
+  }
+
+  #about .testimonials-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 999px) {
+  #about .testimonials-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  #about .quote:last-child {
+    grid-column: 1 / -1;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 639px) {
+  #about .advisor-card,
+  #about .firm-info-card {
+    padding: 24px;
+  }
+
+  #about .quote {
+    padding: 24px;
+  }
+
+  #about .quote::before {
+    font-size: 4.5rem;
+    top: -5px;
+    left: 12px;
+  }
+}
+
+  /* noop to avoid flicker if not using JS */
 
   /* Services */
   .services {

@@ -78,18 +78,18 @@
     <div class="container">
       <div class="stats-grid reveal">
         <div class="stat-item">
-          <div class="stat-number counter" data-value="2.8" data-prefix="$" data-suffix="B" data-decimals="1">$0.0B
+          <div class="stat-number counter" data-value="50" data-prefix="$" data-suffix="K" data-decimals="1">$0.0K
           </div>
           <div class="stat-label">Assets Under Management</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number counter" data-value="15" data-suffix="+" data-decimals="0">0+</div>
+          <div class="stat-number counter" data-value="5" data-suffix="+" data-decimals="0">0+</div>
           <div class="stat-label">Years Experience</div>
         </div>
-        <div class="stat-item">
+        <!-- <div class="stat-item">
           <div class="stat-number counter" data-value="250" data-suffix="+" data-decimals="0">0+</div>
           <div class="stat-label">Families Served</div>
-        </div>
+        </div> -->
         <div class="stat-item">
           <div class="stat-number counter" data-value="98" data-suffix="%" data-decimals="0">0%</div>
           <div class="stat-label">Client Retention Rate</div>
@@ -101,7 +101,7 @@
   <!-- About (improved UI) -->
   <section id="about" class="about">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="eyebrow">About Our Firm</div>
       <h2 class="section-title">Experience. Integrity. Results.</h2>
       <p class="section-desc">
@@ -111,15 +111,14 @@
     </div>
 
     <div class="about-two-col">
-      <!-- Left: brief advisor -->
-      <aside class="advisor-card">
+      <!-- Left: Advisor Info -->
+      <aside class="advisor-card reveal">
         <div class="advisor-header">
           <div class="avatar" aria-hidden="true">
-            <!-- replace with your photo if desired -->
-            <img src="dp.jpeg" alt="" loading="lazy" />
+            <img src="Profile.PNG" alt="" loading="lazy" />
           </div>
           <div class="advisor-meta">
-            <h3 class="advisor-name">Pratham Patel, CFA®, CFP®, CIMA®</h3>
+            <h3 class="advisor-name">Pratham Patel</h3>
             <p class="advisor-role">Founder & Managing Principal</p>
           </div>
         </div>
@@ -128,29 +127,107 @@
           Pratham blends evidence-based investing with tax-aware planning to help clients make confident decisions,
           stay disciplined through market cycles, and reach meaningful outcomes.
         </p>
+
+        <div class="advisor-credentials">
+          <div class="cred-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 14l9-5-9-5-9 5 9 5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>
+              <strong>MBA</strong>
+              <span>Finance & Investment Management</span>
+            </div>
+          </div>
+          <!-- <div class="cred-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>
+              <strong>CFP®</strong>
+              <span>Certified Financial Planner</span>
+            </div>
+          </div>
+          <div class="cred-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>
+              <strong>CFA</strong>
+              <span>Chartered Financial Analyst</span>
+            </div>
+          </div> -->
+        </div>
       </aside>
 
-      <!-- Right: testimonials only -->
-      <div class="testimonials">
+      <!-- Right: Firm Info -->
+      <div class="firm-info-card reveal">
+        <h3>Our Commitment</h3>
+        <p>We serve successful professionals, entrepreneurs, and families who value independent advice and institutional-quality portfolio management.</p>
+        
+        <div class="firm-stats">
+          <div class="firm-stat">
+            <div class="firm-stat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Fiduciary Standard</strong>
+              <p>SEC-registered with a legal duty to put your interests first</p>
+            </div>
+          </div>
+
+          <div class="firm-stat">
+            <div class="firm-stat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Independent & Transparent</strong>
+              <p>Fee-only model with no commissions or product sales</p>
+            </div>
+          </div>
+
+          <div class="firm-stat">
+            <div class="firm-stat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0121 12a11.955 11.955 0 01-1.382 5.618m0 0A11.955 11.955 0 0112 21a11.955 11.955 0 01-7.618-2.382m15.236 0A11.952 11.952 0 0112 21c-2.331 0-4.512-.645-6.382-1.764m0 0A11.955 11.955 0 013 12c0-2.172.576-4.21 1.618-5.982M9 12a3 3 0 106 0 3 3 0 00-6 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Institutional-Grade Investing</strong>
+              <p>Sophisticated strategies typically reserved for large institutions</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials Section (One Row) -->
+    <div class="testimonials-section reveal">
+      <h3 class="testimonials-title">Trusted by Distinguished Clients</h3>
+      <div class="testimonials-row">
         <figure class="quote">
           <blockquote>
-            “Pratham’s tax-loss harvesting and asset-location approach saved us well into six figures—explained simply and executed flawlessly.”
+            "Pratham's sophisticated tax-loss harvesting strategy and asset-location framework delivered six-figure savings while maintaining our target allocation. His clarity and execution are exceptional."
           </blockquote>
-          <figcaption class="who">— Priya & Rohit Sharma · Tech Entrepreneurs</figcaption>
+          <figcaption class="who">— Vikram & Meera Khandelwal · Technology Entrepreneurs</figcaption>
         </figure>
 
         <figure class="quote">
           <blockquote>
-            “During 2020 volatility, his calm, rules-based rebalancing improved our long-term results. We always knew the plan.”
+            "During the market turbulence of 2020, his disciplined rebalancing approach and behavioral coaching kept us focused on long-term objectives. We never wavered from the plan."
           </blockquote>
-          <figcaption class="who">— Dr. Anika Mehta · Cardiovascular Surgeon</figcaption>
+          <figcaption class="who">— Dr. Aditya Malhotra · Cardiothoracic Surgeon</figcaption>
         </figure>
 
         <figure class="quote">
           <blockquote>
-            “Clear communication, proactive coordination with our CPA and attorney, and a plan our family actually follows.”
+            "Seamless coordination with our estate attorney and CPA, proactive planning around liquidity events, and a comprehensive strategy our family understands and follows with confidence."
           </blockquote>
-          <figcaption class="who">— The Johnson Family · Family Office</figcaption>
+          <figcaption class="who">— The Singhania Family · Multi-Generational Office</figcaption>
         </figure>
       </div>
     </div>
@@ -216,7 +293,7 @@
             plan.</p>
         </article>
 
-        <article class="card reveal">
+        <!-- <article class="card reveal">
           <div class="icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -226,7 +303,7 @@
           </div>
           <h3>Estate Planning</h3>
           <p>Trusts, charitable giving, and business succession—coordinated to minimize taxes and honor your legacy.</p>
-        </article>
+        </article> -->
 
         <article class="card reveal">
           <div class="icon">
@@ -262,7 +339,7 @@
         <div class="step reveal">
           <div class="step-number">2</div>
           <h3>Strategy Development</h3>
-          <p>Custom plan & IPS: allocation, tax strategy, and milestones mapped to outcomes.</p>
+          <p>Custom plan : allocation, tax strategy, and milestones mapped to outcomes.</p>
         </div>
         <div class="step reveal">
           <div class="step-number">3</div>
